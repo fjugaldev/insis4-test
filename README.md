@@ -40,8 +40,8 @@ document.getElementsByClassName("col-sm-10");
 ```
 - 3- Utilizando los selectores de jQuery seria de la siguiente forma:
 ```Javascript
-$('.class')
-$('#id')
+$('.class') # Para seleccionar por clase css
+$('#id') # Para seleccionar por Id
 ```
 - 4- Utilizando el método .each()
 ```javascript
