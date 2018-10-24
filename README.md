@@ -88,6 +88,32 @@ CREATE TABLE page_campaign (
 CONSTRAINT PK_PAGE_CAMPAIGN PRIMARY KEY (page_id, campaign_id)
 );
 ```
+INSERTS DE DATOS
+```sql
+-- Tabla page
+INSERT INTO wptest.page (id, name) VALUES (1, 'Pagina 1');
+INSERT INTO wptest.page (id, name) VALUES (2, 'Pagina 2');
+INSERT INTO wptest.page (id, name) VALUES (3, 'Pagina 3');
+
+-- Tabla campaign
+INSERT INTO wptest.campaign (id, name) VALUES (1, 'Campaña 1');
+INSERT INTO wptest.campaign (id, name) VALUES (2, 'Campaña 2');
+INSERT INTO wptest.campaign (id, name) VALUES (3, 'Campaña 3');
+INSERT INTO wptest.campaign (id, name) VALUES (4, 'Campaña 4');
+INSERT INTO wptest.campaign (id, name) VALUES (5, 'Campaña 5');
+
+-- Tabla page_campaign
+INSERT INTO wptest.page_campaign (page_id, campaign_id, cost) VALUES (1, 1, 170.00);
+INSERT INTO wptest.page_campaign (page_id, campaign_id, cost) VALUES (1, 2, 190.00);
+INSERT INTO wptest.page_campaign (page_id, campaign_id, cost) VALUES (1, 4, 220.00);
+INSERT INTO wptest.page_campaign (page_id, campaign_id, cost) VALUES (2, 1, 140.00);
+INSERT INTO wptest.page_campaign (page_id, campaign_id, cost) VALUES (2, 2, 240.00);
+INSERT INTO wptest.page_campaign (page_id, campaign_id, cost) VALUES (2, 5, 146.00);
+INSERT INTO wptest.page_campaign (page_id, campaign_id, cost) VALUES (3, 1, 290.00);
+INSERT INTO wptest.page_campaign (page_id, campaign_id, cost) VALUES (3, 3, 199.00);
+INSERT INTO wptest.page_campaign (page_id, campaign_id, cost) VALUES (3, 4, 100.00);
+
+```
 - 2- Listado de nombres de páginas y campañas asociadas
 ```sql
 SELECT 
