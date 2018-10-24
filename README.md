@@ -19,8 +19,8 @@ El contenido del fichero read_file.log sigue un patron establecido y tiene este 
 El fichero read_file.log se limpia cada día, pero se quiere que el fichero error_read_file.log vaya
 almacenando todas las líneas de error que hayan surgido.
 
-- *** Para ver el resultado abrir el fichero ubicado en 1/1.php***
-- *** Para ver el resultado, ejecutar lo siguiente: ***
+- ***Para ver el resultado abrir el fichero ubicado en 1/1.php***
+- ***Para ver el resultado, ejecutar lo siguiente:***
 ```bash
 ~ cd 1
 ~ php 1.php
@@ -65,8 +65,8 @@ Siguiendo con su planteamiento, escriba el código necesario para recuperar o es
 pantalla un listado de los títulos o headings de todos los mensajes almacenados en el fichero
 XML.
 
-- *** Para ver el resultado abrir el fichero ubicado en 2/2.php***
-- *** Para ver el resultado, ejecutar lo siguiente: ***
+- ***Para ver el resultado abrir el fichero ubicado en 2/2.php***
+- ***Para ver el resultado, ejecutar lo siguiente:***
 ```bash
 ~ cd 2
 ~ php 2.php
