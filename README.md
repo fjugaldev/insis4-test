@@ -30,27 +30,27 @@ b = 3
 c = 7
 
 ### CONOCIMIENTOS JAVASCRIPT Y JQUERY
-1. A través del método: getElementById("id");
+- 1-  A través del método: getElementById("id");
 ```Javascript
 document.getElementById("btnSend");
 ```
-1. A través del método: getElementsByClassName("class");
+- 2- A través del método: getElementsByClassName("class");
 ```Javascript
 document.getElementsByClassName("col-sm-10");
 ```
-1. Utilizando los selectores de jQuery seria de la siguiente forma:
+- 3- Utilizando los selectores de jQuery seria de la siguiente forma:
 ```Javascript
 $('.class')
 $('#id')
 ```
-1. Utilizando el método .each()
+- 4- Utilizando el método .each()
 ```javascript
 var arrElementos = [ "uno", "dos", "tres", "cuatro", "cinto" ];
 $.each( arrElementos, function( i, val ) {
   console.log('El elemento ' + i + ' tiene valor de: ' + val);
 });
 ``` 
-1. Utilizando el método .get(), o .post() o .ajax según se necesite:
+- 5- Utilizando el método .get(), o .post() o .ajax según se necesite:
 ```javascript
 var request = $.get( "mi_ejemplo.php", function() {
 })
@@ -62,7 +62,61 @@ var request = $.get( "mi_ejemplo.php", function() {
   });
 ```
 
-### PRUEBA NIVEL DE DESARROLLO
+## PRUEBA NIVEL DE DESARROLLO
+
+### CONOCIMIENTOS DE BASES DE DATOS
+- 1- Estructura de la BD
+
+![Diagrama BD](diagrama-db.png)
+
+SQL DE LA ESTRUCTURA DEFINIDA:
+```sql
+CREATE TABLE page (
+`id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE campaign (
+`id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE page_campaign (
+`page_id` INT(11) NOT NULL,
+`campaign_id` INT(11) NOT NULL,
+`cost` DECIMAL(10,2) NOT NULL,
+CONSTRAINT PK_PAGE_CAMPAIGN PRIMARY KEY (page_id, campaign_id)
+);
+```
+- 2- Listado de nombres de páginas y campañas asociadas
+```sql
+SELECT 
+    p.name AS 'Pagina',
+    c.name AS 'Campaña' 
+FROM 
+    page_campaign pc 
+INNER JOIN 
+    page p ON p.id = pc.page_id 
+INNER JOIN 
+    campaign c ON c.id = pc.campaign_id 
+```
+- 3- Coste total de cada una de las campañas en todas las páginas del sistema
+```sql
+SELECT 
+    c.name AS 'Campaña',
+    SUM(pc.cost AS 'Coste total')
+FROM 
+    page_campaign pc 
+INNER JOIN 
+    page p ON p.id = pc.page_id 
+INNER JOIN 
+    campaign c ON c.id = pc.campaign_id
+GROUP BY 
+    pc.campaign_id
+```
+
+### CONOCIMIENTOS UNIX
+
 ### CONOCIMIENTOS SYMFONY
 
 1. b y c
