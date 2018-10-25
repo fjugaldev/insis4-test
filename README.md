@@ -19,6 +19,19 @@ El contenido del fichero read_file.log sigue un patron establecido y tiene este 
 El fichero read_file.log se limpia cada día, pero se quiere que el fichero error_read_file.log vaya
 almacenando todas las líneas de error que hayan surgido.
 
+***Respuesta***
+```php
+<?php
+const ERROR_LOG_PATTERN = '#ERROR#';
+$log = file('read_file.log');
+
+foreach ($log as $row => $value) {
+    if (strpos($value, ERROR_LOG_PATTERN)) {
+        file_put_contents('error_read_file.log', $value , FILE_APPEND | LOCK_EX);
+    }
+}
+```
+
 ***NOTA: Para ejecutar los ficheros de PHP es necesario ejecutar primero desde la raiz del repositorio:***
 ```bash
 ~ composer install
@@ -71,6 +84,18 @@ Siguiendo con su planteamiento, escriba el código necesario para recuperar o es
 pantalla un listado de los títulos o headings de todos los mensajes almacenados en el fichero
 XML.
 
+***Respuesta***
+```php
+<?php
+require '../vendor/autoload.php';
+use Symfony\Component\DomCrawler\Crawler;
+
+$crawler = new Crawler(file_get_contents('messages.xml'));
+$crawler = $crawler->filter('heading');
+foreach ($crawler as $domElement) {
+    echo $domElement->nodeValue . PHP_EOL;
+}
+```
 - ***Para ver el resultado abrir el fichero ubicado en 2/2.php***
 - ***Para ejecutar codigo directamente, hacer lo siguiente:***
 ```bash
