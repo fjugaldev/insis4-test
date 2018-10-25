@@ -1,6 +1,6 @@
 ## Respuestas al Test
 
-### 1
+### PRUEBA #1
 Se tiene un fichero con nombre read_file.log en la ruta /var/logs/. El fichero contiene una
 línea para cada evento surgido en un proceso de backend en el que se almacenan errores. Se
 pide escribir un script que sea capaz de leer las líneas de error del fichero read_file.log y
@@ -19,14 +19,20 @@ El contenido del fichero read_file.log sigue un patron establecido y tiene este 
 El fichero read_file.log se limpia cada día, pero se quiere que el fichero error_read_file.log vaya
 almacenando todas las líneas de error que hayan surgido.
 
+***NOTA: Para ejecutar los ficheros de PHP es necesario ejecutar primero desde la raiz del repositorio:***
+```bash
+~ composer install
+```
+Esto es necesario para poder descargar las dependencias requeridas para el test.
+
 - ***Para ver el resultado abrir el fichero ubicado en 1/1.php***
-- ***Para ver el resultado, ejecutar lo siguiente:***
+- ***Para ejecutar codigo directamente, hacer lo siguiente:***
 ```bash
 ~ cd 1
 ~ php 1.php
 ```
 
-### 2
+### PRUEBA #2
 Se tiene un fichero XML al cual se quiere acceder para recoger cierta información. El fichero
 XML tiene una estructura:
 ```xml
@@ -66,13 +72,13 @@ pantalla un listado de los títulos o headings de todos los mensajes almacenados
 XML.
 
 - ***Para ver el resultado abrir el fichero ubicado en 2/2.php***
-- ***Para ver el resultado, ejecutar lo siguiente:***
+- ***Para ejecutar codigo directamente, hacer lo siguiente:***
 ```bash
 ~ cd 2
 ~ php 2.php
 ```
 
-## 3. Responda a las siguientes preguntas sobre funciones básicas: 
+## PRUEBA #3. Responda a las siguientes preguntas sobre funciones básicas: 
  
 ### a. ¿Para qué se utilizan las funciones de PHP include(filename) y require(filename)?
  
@@ -94,7 +100,7 @@ previamente.
 
 ## PRUEBA NIVEL DE DESARROLLO
 
-### 4. Teniendo el siguiente script, indique cual será la salida por pantalla de los valores de las variables:
+### PRUEBA #4. Teniendo el siguiente script, indique cual será la salida por pantalla de los valores de las variables:
 ```php
 <?php
 $a = 0;
@@ -256,6 +262,95 @@ GROUP BY
 ```
 
 ### CONOCIMIENTOS UNIX
+
+A continuación se exponen algunos problemas a los que dar solución desde consola a través de
+comandos UNIX:
+
+1. Teniendo un fichero con nombre ‘my_file.html’, se quiere mover su contenido a otro fichero
+con nombre ‘my_new_file.html’ y después, mediante un enlace simbólico, enlazar ese fichero en
+otro con nombre ‘my_link.html’.
+
+```bash
+#!/bin/bash
+
+#Mover contenido a otro fichero:
+~ mv my_file.html my_new_file.html
+
+#Enlace simbólico de my_new_file.html a my_link.html
+~ ln -s my_new_file.html my_file.html
+```
+
+2. Teniendo el siguiente árbol de directorios. Escriba uno o varios comandos para extraer un
+listado de los ficheros html con su ruta completa. Tenga en cuenta que actualmente está en el
+directorio raíz o /
+
+```text
+/
+|--home/
+|-------user/
+|----------- directory/
+|--------------------- subdirectory1/
+|----------------------------------- file.txt
+|----------------------------------- file.html
+|--------------------- subdirectory2/
+|----------------------------------- my_file.html
+|----------- group_directory/
+|--------------------------- groups.html
+|--------------------------- old_groups.html
+|--------------------------- family/
+|----------------------------------- dad.html
+|----------------------------------- mom.html
+```
+
+Escriba su respuesta a continuación:
+
+```bash
+# Teniendo en cuenta que estamos en la raiz debemos ejecutar:
+~ find . -type f -name "*.html"
+```
+
+3. Se tiene el mismo fichero read_file.log en el directorio /var/log del mismo modo que en el
+primer problema, con el siguiente contenido:
+
+```text
+2015/10/22 – 22:33:12#OK#File /tmp/temp1.txt processed
+2015/10/22 – 22:37:51#OK#File /tmp/temp2.txt processed
+2015/10/22 – 22:41:03#ERROR#File /tmp/temp3.txt does not exist
+2015/10/22 – 23:15:13#OK#File /tmp/temp4.txt processed
+2015/10/23 – 00:03:12#ERROR#File /tmp/temp5.txt not readable, permission denied
+2015/10/23 – 00:12:06#OK#File /tmp/temp6.txt processed
+```
+
+a. Se necesita realizar un script en bash, con comandos unix, que permita ejecutar un
+procedimiento similar al planteado anteriormente para que se copien las líneas de ERROR
+dentro de un fichero error_read_file.log. De la misma manera, el fichero read_file.log se limpia
+cada día, pero se quiere que el fichero error_read_file.log contenga un histórico de todos los
+errores. Implemente el script a continuación:
+
+b. A parte de este script, ¿de qué manera podemos conseguir que ese fichero
+error_read_file.log esté actualizado todos los días de manera automática?
+
+```bash
+cat read_file.log | while read line
+do
+    if [[ $line == *"#ERROR#"* ]]; then
+        echo $line >> error_read_file.log
+    fi
+done
+
+# Esto solo es para ver como va quedando el fichero error_read_file.log luego de cada ejecución
+cat error_read_file.log
+```
+
+Para probar este código, realizar lo siguiente:
+```bash
+~ cd bash
+~ sh log_errors.sh
+```
+
+***Respuesta***
+Teniendo un script .sh podemos programar un crontab en el sistema para que periodicamente se ejecute y realice
+la tarea de limpiar el fichero, extrayendo primero las lineas que contienen error y almacenandolas en el fichero error_read_file.log
 
 ### CONOCIMIENTOS SYMFONY
 

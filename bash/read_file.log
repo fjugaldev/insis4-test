@@ -1,0 +1,6 @@
+2015/10/22 – 22:33:12#OK#File /tmp/temp1.txt processed
+2015/10/22 – 22:37:51#OK#File /tmp/temp2.txt processed
+2015/10/22 – 22:41:03#ERROR#File /tmp/temp3.txt does not exist
+2015/10/22 – 23:15:13#OK#File /tmp/temp4.txt processed
+2015/10/23 – 00:03:12#ERROR#File /tmp/temp5.txt not readable, permission denied
+2015/10/23 – 00:12:06#OK#File /tmp/temp6.txt processed
